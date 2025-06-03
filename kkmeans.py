@@ -1,23 +1,27 @@
+import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 import numpy as np
 
 # Sample data (replace with your actual data)
-data = np.array([[1, 2], [1.5, 1.8], [5, 8], [8, 8], [1, 0.6], [9, 11]])
+X = np.array([[1, 2], [1, 4], [1, 0], [10, 8], [10, 10], [10, 12]])
 
 # Choose the number of clusters (k)
 k = 2
 
-# Create a KMeans object
-kmeans = KMeans(n_clusters=k)
+# Initialize and fit the K-Means model
+kmeans = KMeans(n_clusters=k, random_state=0, n_init="auto")
+kmeans.fit(X)
 
-# Fit the model to the data
-kmeans.fit(data)
-
-# Get the cluster labels for each data point
+# Get the cluster labels
 labels = kmeans.labels_
 
-# Get the cluster centroids
+# Get the cluster centers (centroids)
 centroids = kmeans.cluster_centers_
 
-print("Cluster labels:", labels)
-print("Cluster centroids:", centroids)
+# Visualize the results
+plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='rainbow')
+plt.scatter(centroids[:, 0], centroids[:, 1], marker='x', s=200, color='black')
+plt.title("K-Means Clustering")
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.show()
