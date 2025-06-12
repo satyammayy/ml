@@ -1,11 +1,11 @@
+import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-import numpy as np
-np.random.seed(0)
 
+np.random.seed(0)
 X = np.random.rand(100, 5)
 y = (3 * X[:, 0] + 2 * X[:, 1] + np.random.randn(100) > 0).astype(int)
 
